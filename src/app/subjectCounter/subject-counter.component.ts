@@ -1,70 +1,85 @@
+import { AsyncPipe, JsonPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { DescriptionPipe } from '../pipes/description.pipe';
 import { SimpleTextComponent } from '../simpleText/simple-text.component';
 import { SubjectService } from './services/subject.service';
-import { AsyncPipe, NgIf } from '@angular/common';
-import { DescriptionPipe } from '../pipes/description.pipe';
 
 @Component({
   selector: 'app-subject-counter',
   standalone: true,
-  imports: [SimpleTextComponent, AsyncPipe, NgIf, DescriptionPipe],
+  imports: [SimpleTextComponent, AsyncPipe, NgIf, DescriptionPipe, JsonPipe],
   template: `
+    <h3>Simple counter that uses BehaviorSubject</h3>
     <div>
-      <p>{{ counter$ | async }}</p>
       <button (click)="decrement()">-</button>
+      <span>{{ counter$ | async }}</span>
       <button (click)="increment()">+</button>
+      <button (click)="reset()">Reset</button>
     </div>
     <div>
-      <ng-container *ngIf="square$ | async as square">
-        <app-simple-text [description]="square | description:'Square of '" [value]="square"></app-simple-text>
-      </ng-container>
-      <ng-container *ngIf="cube$ | async as cube">
-        <app-simple-text [description]="cube | description:'Cube of '" [value]="cube"></app-simple-text>
-      </ng-container>
-      <ng-container *ngIf="double$ | async as double">
-        <app-simple-text [description]="double | description:'2 x '" [value]="double"></app-simple-text>
-      </ng-container>
-      <ng-container *ngIf="triple$ | async as triple">
-        <app-simple-text [description]="triple | description:'3 x '" [value]="triple"></app-simple-text>
+      <ng-container *ngIf="{ counter: counter$ | async, operations: operations$ | async  } as calculations">
+        <app-simple-text [description]="{ counter: calculations.counter, result: calculations.operations?.square } | description:'Square of '"></app-simple-text>
+        <app-simple-text [description]="{ counter: calculations.counter, result: calculations.operations?.cube } | description:'Cube of '"></app-simple-text>
+        <app-simple-text [description]="{ counter: calculations.counter, result: calculations.operations?.double } | description:'2 x '"></app-simple-text>
+        <app-simple-text [description]="{ counter: calculations.counter, result: calculations.operations?.triple } | description:'3 x '"></app-simple-text>
       </ng-container>
     </div>
   `,
   styles: [`
     :host {
       display: block;
-    }
-
-    button:first-of-type {
-      margin-right: 1rem;
+      padding: 0.5rem;
     }
 
     button {
       border-radius: 25%;
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       font-size: 1.5rem;
     }
 
+    button:nth-of-type(2) {
+      margin-right: 1rem;
+    }
+
+    button:last-of-type {
+      border-radius: 25%;
+      width: unset;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    span {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
     div:nth-of-type(2) {
+      margin-top: 1rem;
       display: flex;
+      flex-wrap: wrap;
+
+      > * {
+        margin-right: 0.5rem;
+      }
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubjectCounterComponent {
   service = inject(SubjectService);
-
   counter$ = this.service.counter$;
-  square$ = this.service.square$;
-  cube$ = this.service.cube$;
-  double$ = this.service.double$;
-  triple$ = this.service.triple$;
+  operations$ = this.service.operations$;
 
   increment() {
-    this.service.increment();
+    this.service.update();
   }
 
   decrement() {
-    this.service.decrement();
+    this.service.update(-1);
+  }
+
+  reset() {
+    this.service.reset();
   }
 }

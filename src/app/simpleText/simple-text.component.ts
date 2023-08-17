@@ -5,14 +5,23 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <p>{{ description }}</p>
-    <p>{{ value }}</p>
+    <p>Simple Text Component</p>
+    <label>
+      <span>Message: </span>
+      <span>{{ description }}</span>
+    </label>
   `,
   styles: [
     `
       :host {
         display: block;
         border: 1px solid red;
+        padding: 0.5rem;
+      }
+
+      span {
+        color: #666;
+        font-style: italic;
       }
     `
   ],
@@ -20,7 +29,4 @@ import { Component, Input } from '@angular/core';
 export class SimpleTextComponent {
   @Input({required: true})
   description = '';
-
-  @Input({required: true})
-  value!: number;
 }

@@ -6,8 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DescriptionPipe implements PipeTransform {
 
-  transform(value: number, description: string): string {
-    return `${description}${value}`;
-  }
+  transform(input: { counter: number | null, result?: number }, description: string): string {
+    if (input?.counter !== null && input?.result !== null) {
+      return `${description}${input.counter} = ${input.result}`;
+    }
 
+    return 'Unknown result';
+  }
 }

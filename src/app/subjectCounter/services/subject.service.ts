@@ -1,31 +1,35 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubjectService {
   private counterSub = new BehaviorSubject(0);
-  counter$ = this.counterSub.asObservable()
+  counter$ = this.counterSub.asObservable().pipe(shareReplay(1));
+
+  private square$ = this.counter$.pipe(map((x) => Math.pow(x, 2)));
+  private cube$ = this.counter$.pipe(map((x) => Math.pow(x, 3)));
+  private double$ = this.counter$.pipe(map((x) => 2 * x));
+  private triple$ = this.counter$.pipe(map((x) => 3 * x));
+
+  operations$ = combineLatest([ this.square$, this.cube$, this.double$, this.triple$ ])
     .pipe(
-      // shareReplay(1),
-      map((x) => x),
-      tap((x) => console.log('counter$ emits value', x))
+      map(([square, cube, double, triple]) => ({
+        square,
+        cube,
+        double,
+        triple,
+      }))
     );
 
-  square$ = this.counter$.pipe(
-    map((x) => x * x),
-    tap((x) => console.log('square', x))
-  );
-  cube$ = this.counter$.pipe(map((x) => x * x * x));
-  double$ = this.counter$.pipe(map((x) => 2 * x));
-  triple$ = this.counter$.pipe(map((x) => 3 * x));
-
-  increment() {
-    this.counterSub.next(this.counterSub.getValue() + 1);
+  update(delta = 1) {
+    if (this.counterSub.getValue() + delta >= 0) {
+      this.counterSub.next(this.counterSub.getValue() + delta);
+    }
   }
 
-  decrement() {
-    this.counterSub.next(this.counterSub.getValue() - 1);
+  reset() {
+    this.counterSub.next(0);
   }
 }
