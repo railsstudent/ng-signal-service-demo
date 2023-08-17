@@ -1,4 +1,4 @@
-import { AsyncPipe, JsonPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DescriptionPipe } from '../pipes/description.pipe';
 import { SimpleTextComponent } from '../simpleText/simple-text.component';
@@ -7,7 +7,7 @@ import { SubjectService } from './services/subject.service';
 @Component({
   selector: 'app-subject-counter',
   standalone: true,
-  imports: [SimpleTextComponent, AsyncPipe, NgIf, DescriptionPipe, JsonPipe],
+  imports: [SimpleTextComponent, AsyncPipe, NgIf, DescriptionPipe],
   template: `
     <h3>Simple counter that uses BehaviorSubject</h3>
     <div>
