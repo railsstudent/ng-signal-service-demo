@@ -17,11 +17,11 @@ import { SubjectService } from './services/subject.service';
       <button (click)="reset()">Reset</button>
     </div>
     <div>
-      <ng-container *ngIf="{ counter: counter$ | async, operations: operations$ | async  } as calculations">
-        <app-simple-text [description]="{ counter: calculations.counter, result: calculations.operations?.square } | description:'Square of '"></app-simple-text>
-        <app-simple-text [description]="{ counter: calculations.counter, result: calculations.operations?.cube } | description:'Cube of '"></app-simple-text>
-        <app-simple-text [description]="{ counter: calculations.counter, result: calculations.operations?.double } | description:'2 x '"></app-simple-text>
-        <app-simple-text [description]="{ counter: calculations.counter, result: calculations.operations?.triple } | description:'3 x '"></app-simple-text>
+      <ng-container *ngIf="arithmetic$ | async as arithmetic">
+        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.square } | description:'Square of '"></app-simple-text>
+        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.cube } | description:'Cube of '"></app-simple-text>
+        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.double } | description:'2 x '"></app-simple-text>
+        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.triple } | description:'3 x '"></app-simple-text>
       </ng-container>
     </div>
   `,
@@ -69,7 +69,7 @@ import { SubjectService } from './services/subject.service';
 export class SubjectCounterComponent {
   service = inject(SubjectService);
   counter$ = this.service.counter$;
-  operations$ = this.service.operations$;
+  arithmetic$ = this.service.arithmetic$;
 
   increment() {
     this.service.update();

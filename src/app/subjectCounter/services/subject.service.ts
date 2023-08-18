@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, shareReplay } from 'rxjs';
+import { BehaviorSubject, map, shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +8,15 @@ export class SubjectService {
   private counterSub = new BehaviorSubject(0);
   counter$ = this.counterSub.asObservable().pipe(shareReplay(1));
 
-  private square$ = this.counter$.pipe(map((x) => Math.pow(x, 2)));
-  private cube$ = this.counter$.pipe(map((x) => Math.pow(x, 3)));
-  private double$ = this.counter$.pipe(map((x) => 2 * x));
-  private triple$ = this.counter$.pipe(map((x) => 3 * x));
-
-  operations$ = combineLatest([ this.square$, this.cube$, this.double$, this.triple$ ])
-    .pipe(
-      map(([square, cube, double, triple]) => ({
-        square,
-        cube,
-        double,
-        triple,
-      }))
-    );
+  arithmetic$ = this.counterSub.pipe(
+    map((x) => ({
+      counter: x,
+      square: Math.pow(x, 2),
+      cube: Math.pow(x, 3),
+      double: x * 2,
+      triple: x * 3,
+    }))
+  );
 
   update(delta = 1) {
     if (this.counterSub.getValue() + delta >= 0) {
