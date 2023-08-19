@@ -1,13 +1,12 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ArithmeticPipe } from '../pipes/arithmetic.pipe';
-import { SimpleTextComponent } from '../simpleText/simple-text.component';
+import { ArithmeticCardsComponent } from '../arithmetic-cards/arithmetic-cards.component';
 import { SubjectService } from './services/subject.service';
 
 @Component({
   selector: 'app-subject-counter',
   standalone: true,
-  imports: [SimpleTextComponent, AsyncPipe, NgIf, ArithmeticPipe],
+  imports: [ArithmeticCardsComponent, NgIf, AsyncPipe],
   template: `
     <h3>Simple counter that uses BehaviorSubject</h3>
     <div>
@@ -16,14 +15,9 @@ import { SubjectService } from './services/subject.service';
       <button (click)="increment()">+</button>
       <button (click)="reset()">Reset</button>
     </div>
-    <div>
-      <ng-container *ngIf="arithmetic$ | async as arithmetic">
-        <app-simple-text [description]="arithmetic.counter | arithmetic:'Square of ':arithmetic.square"></app-simple-text>
-        <app-simple-text [description]="arithmetic.counter | arithmetic:'Cube of ':arithmetic.cube"></app-simple-text>
-        <app-simple-text [description]="arithmetic.counter | arithmetic:'2 x ':arithmetic.double"></app-simple-text>
-        <app-simple-text [description]="arithmetic.counter | arithmetic:'3 x ':arithmetic.triple"></app-simple-text>
-      </ng-container>
-    </div>
+    <ng-container *ngIf="arithmetic$ | async as arithmetic">
+      <app-arithmetic-cards [arithmetic]="arithmetic"></app-arithmetic-cards>
+    </ng-container>
   `,
   styles: [`
     :host {
@@ -54,14 +48,8 @@ import { SubjectService } from './services/subject.service';
       padding-right: 0.5rem;
     }
 
-    div:nth-of-type(2) {
+    app-arithmetic-cards {
       margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-
-      > * {
-        margin-right: 0.5rem;
-      }
     }
   `],
   providers: [SubjectService],

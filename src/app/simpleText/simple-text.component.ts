@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BorderDirective } from '../directives/border.directive';
 
 @Component({
@@ -29,6 +29,7 @@ import { BorderDirective } from '../directives/border.directive';
       }
     `
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SimpleTextComponent {
   @Input({required: true})
