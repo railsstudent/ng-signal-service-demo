@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, shareReplay } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubjectService {
   private counterSub = new BehaviorSubject(0);
-  counter$ = this.counterSub.asObservable().pipe(shareReplay(1));
+  counter$ = this.counterSub.asObservable();
 
   arithmetic$ = this.counterSub.pipe(
     map((x) => ({

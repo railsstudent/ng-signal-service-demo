@@ -1,9 +1,15 @@
 import { Component, Input } from '@angular/core';
+import { BorderDirective } from '../directives/border.directive';
 
 @Component({
   selector: 'app-simple-text',
   standalone: true,
-  imports: [],
+  hostDirectives: [
+    {
+      directive: BorderDirective,
+      inputs: ['borderColor', 'borderWidth']
+    } 
+  ],
   template: `
     <p>Simple Text Component</p>
     <label>
@@ -15,7 +21,6 @@ import { Component, Input } from '@angular/core';
     `
       :host {
         display: block;
-        border: 1px solid red;
         padding: 0.5rem;
       }
 

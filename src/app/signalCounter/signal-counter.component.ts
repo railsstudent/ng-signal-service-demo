@@ -1,28 +1,25 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AsyncPipe, NgIf } from '@angular/common';
-import { SimpleTextComponent } from '../simpleText/simple-text.component';
-import { SubjectService } from '../subjectCounter/services/subject.service';
 import { DescriptionPipe } from '../pipes/description.pipe';
+import { SimpleTextComponent } from '../simpleText/simple-text.component';
+import { SignalService } from './services/signal.service';
 
 @Component({
   selector: 'app-signal-counter',
   standalone: true,
-  imports: [SimpleTextComponent, AsyncPipe, NgIf, DescriptionPipe],
+  imports: [SimpleTextComponent, DescriptionPipe],
   template: `
     <h3>Simple counter that uses BehaviorSubject</h3>
     <div>
       <button (click)="decrement()">-</button>
-      <span>{{ counter$ | async }}</span>
+      <span>{{ counter() }}</span>
       <button (click)="increment()">+</button>
       <button (click)="reset()">Reset</button>
     </div>
     <div>
-      <ng-container *ngIf="arithmetic$ | async as arithmetic">
-        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.square } | description:'Square of '"></app-simple-text>
-        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.cube } | description:'Cube of '"></app-simple-text>
-        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.double } | description:'2 x '"></app-simple-text>
-        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.triple } | description:'3 x '"></app-simple-text>
-      </ng-container>
+      <app-simple-text [description]="{ counter: arithmetic().counter, result: arithmetic().square } | description:'Square of '" borderColor="blue" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="{ counter: arithmetic().counter, result: arithmetic().cube } | description:'Cube of '" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="{ counter: arithmetic().counter, result: arithmetic().double } | description:'2 x '" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="{ counter: arithmetic().counter, result: arithmetic().triple } | description:'3 x '" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
     </div>
   `,
   styles: [`
@@ -64,12 +61,13 @@ import { DescriptionPipe } from '../pipes/description.pipe';
       }
     }
   `],
+  providers: [SignalService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignalCounterComponent {
-  service = inject(SubjectService);
-  counter$ = this.service.counter$;
-  arithmetic$ = this.service.arithmetic$;
+  service = inject(SignalService);
+  counter = this.service.counter;
+  arithmetic = this.service.arithmetic;
 
   increment() {
     this.service.update();
