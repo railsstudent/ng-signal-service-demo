@@ -8,7 +8,7 @@ import { SignalService } from './services/signal.service';
   standalone: true,
   imports: [SimpleTextComponent, DescriptionPipe],
   template: `
-    <h3>Simple counter that uses BehaviorSubject</h3>
+    <h3>Simple counter that uses Signal</h3>
     <div>
       <button (click)="decrement()">-</button>
       <span>{{ counter() }}</span>

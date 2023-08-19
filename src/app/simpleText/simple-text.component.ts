@@ -13,7 +13,6 @@ import { BorderDirective } from '../directives/border.directive';
   template: `
     <p>Simple Text Component</p>
     <label>
-      <span>Message: </span>
       <span>{{ description }}</span>
     </label>
   `,
