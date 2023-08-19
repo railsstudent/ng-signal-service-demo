@@ -64,6 +64,7 @@ import { SubjectService } from './services/subject.service';
       }
     }
   `],
+  providers: [SubjectService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubjectCounterComponent {

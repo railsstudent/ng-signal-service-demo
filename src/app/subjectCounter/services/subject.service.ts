@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SubjectService {
   private counterSub = new BehaviorSubject(0);
   counter$ = this.counterSub.asObservable();
