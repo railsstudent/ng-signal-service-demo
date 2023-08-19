@@ -18,10 +18,10 @@ import { SubjectService } from './services/subject.service';
     </div>
     <div>
       <ng-container *ngIf="arithmetic$ | async as arithmetic">
-        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.square } | description:'Square of '"></app-simple-text>
-        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.cube } | description:'Cube of '"></app-simple-text>
-        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.double } | description:'2 x '"></app-simple-text>
-        <app-simple-text [description]="{ counter: arithmetic.counter, result: arithmetic.triple } | description:'3 x '"></app-simple-text>
+        <app-simple-text [description]="arithmetic.counter | description:'Square of ':arithmetic.square"></app-simple-text>
+        <app-simple-text [description]="arithmetic.counter | description:'Cube of ':arithmetic.cube"></app-simple-text>
+        <app-simple-text [description]="arithmetic.counter | description:'2 x ':arithmetic.double"></app-simple-text>
+        <app-simple-text [description]="arithmetic.counter | description:'3 x ':arithmetic.triple"></app-simple-text>
       </ng-container>
     </div>
   `,

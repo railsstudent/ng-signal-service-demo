@@ -16,10 +16,10 @@ import { SignalService } from './services/signal.service';
       <button (click)="reset()">Reset</button>
     </div>
     <div>
-      <app-simple-text [description]="{ counter: arithmetic().counter, result: arithmetic().square } | description:'Square of '" borderColor="blue" [borderWidth]="2"></app-simple-text>
-      <app-simple-text [description]="{ counter: arithmetic().counter, result: arithmetic().cube } | description:'Cube of '" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
-      <app-simple-text [description]="{ counter: arithmetic().counter, result: arithmetic().double } | description:'2 x '" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
-      <app-simple-text [description]="{ counter: arithmetic().counter, result: arithmetic().triple } | description:'3 x '" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="arithmetic().counter | description:'Square of ':arithmetic().square" borderColor="blue" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="arithmetic().counter | description:'Cube of ':arithmetic().cube" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="arithmetic().counter | description:'2 x ':arithmetic().double" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="arithmetic().counter | description:'3 x ':arithmetic().triple" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
     </div>
   `,
   styles: [`
