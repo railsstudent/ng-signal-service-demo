@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BorderDirective } from '../directives/border.directive';
 
 @Component({
-  selector: 'app-simple-text',
+  selector: 'app-arithmetic-card',
   standalone: true,
   hostDirectives: [
     {
@@ -11,7 +11,7 @@ import { BorderDirective } from '../directives/border.directive';
     } 
   ],
   template: `
-    <p>Simple Text Component</p>
+    <p>Arithmetic Card</p>
     <label>
       <span>{{ description }}</span>
     </label>
@@ -31,7 +31,7 @@ import { BorderDirective } from '../directives/border.directive';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SimpleTextComponent {
+export class ArithmeticCardComponent {
   @Input({required: true})
   description = '';
 }

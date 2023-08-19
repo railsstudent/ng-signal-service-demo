@@ -1,6 +1,6 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ArithmeticCardsComponent } from '../arithmetic-cards/arithmetic-cards.component';
+import { ArithmeticCardsComponent } from '../arithmeticCards/arithmetic-cards.component';
 import { SubjectService } from './services/subject.service';
 
 @Component({
@@ -32,11 +32,8 @@ import { SubjectService } from './services/subject.service';
       font-size: 1.5rem;
     }
 
-    button:nth-of-type(2) {
-      margin-right: 1rem;
-    }
-
     button:last-of-type {
+      margin-left: 0.5rem;
       border-radius: 25%;
       width: unset;
       height: 40px;
