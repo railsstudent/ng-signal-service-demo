@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { DescriptionPipe } from '../pipes/description.pipe';
+import { ArithmeticPipe } from '../pipes/arithmetic.pipe';
 import { SimpleTextComponent } from '../simpleText/simple-text.component';
 import { SignalService } from './services/signal.service';
 
 @Component({
   selector: 'app-signal-counter',
   standalone: true,
-  imports: [SimpleTextComponent, DescriptionPipe],
+  imports: [SimpleTextComponent, ArithmeticPipe],
   template: `
     <h3>Simple counter that uses Signal</h3>
     <div>
@@ -16,10 +16,10 @@ import { SignalService } from './services/signal.service';
       <button (click)="reset()">Reset</button>
     </div>
     <div>
-      <app-simple-text [description]="arithmetic().counter | description:'Square of ':arithmetic().square" borderColor="blue" [borderWidth]="2"></app-simple-text>
-      <app-simple-text [description]="arithmetic().counter | description:'Cube of ':arithmetic().cube" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
-      <app-simple-text [description]="arithmetic().counter | description:'2 x ':arithmetic().double" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
-      <app-simple-text [description]="arithmetic().counter | description:'3 x ':arithmetic().triple" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="arithmetic().counter | arithmetic:'Square of ':arithmetic().square" borderColor="blue" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="arithmetic().counter | arithmetic:'Cube of ':arithmetic().cube" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="arithmetic().counter | arithmetic:'2 x ':arithmetic().double" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
+      <app-simple-text [description]="arithmetic().counter | arithmetic:'3 x ':arithmetic().triple" [borderColor]="'blue'" [borderWidth]="2"></app-simple-text>
     </div>
   `,
   styles: [`

@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'description',
+  name: 'arithmetic',
   standalone: true
 })
-export class DescriptionPipe implements PipeTransform {
+export class ArithmeticPipe implements PipeTransform {
 
   transform(counter: number, description: string, result?: number): string {
     if (counter !== null && result !== null) {

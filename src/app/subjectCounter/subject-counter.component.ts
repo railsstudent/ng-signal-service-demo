@@ -1,13 +1,13 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { DescriptionPipe } from '../pipes/description.pipe';
+import { ArithmeticPipe } from '../pipes/arithmetic.pipe';
 import { SimpleTextComponent } from '../simpleText/simple-text.component';
 import { SubjectService } from './services/subject.service';
 
 @Component({
   selector: 'app-subject-counter',
   standalone: true,
-  imports: [SimpleTextComponent, AsyncPipe, NgIf, DescriptionPipe],
+  imports: [SimpleTextComponent, AsyncPipe, NgIf, ArithmeticPipe],
   template: `
     <h3>Simple counter that uses BehaviorSubject</h3>
     <div>
@@ -18,10 +18,10 @@ import { SubjectService } from './services/subject.service';
     </div>
     <div>
       <ng-container *ngIf="arithmetic$ | async as arithmetic">
-        <app-simple-text [description]="arithmetic.counter | description:'Square of ':arithmetic.square"></app-simple-text>
-        <app-simple-text [description]="arithmetic.counter | description:'Cube of ':arithmetic.cube"></app-simple-text>
-        <app-simple-text [description]="arithmetic.counter | description:'2 x ':arithmetic.double"></app-simple-text>
-        <app-simple-text [description]="arithmetic.counter | description:'3 x ':arithmetic.triple"></app-simple-text>
+        <app-simple-text [description]="arithmetic.counter | arithmetic:'Square of ':arithmetic.square"></app-simple-text>
+        <app-simple-text [description]="arithmetic.counter | arithmetic:'Cube of ':arithmetic.cube"></app-simple-text>
+        <app-simple-text [description]="arithmetic.counter | arithmetic:'2 x ':arithmetic.double"></app-simple-text>
+        <app-simple-text [description]="arithmetic.counter | arithmetic:'3 x ':arithmetic.triple"></app-simple-text>
       </ng-container>
     </div>
   `,
