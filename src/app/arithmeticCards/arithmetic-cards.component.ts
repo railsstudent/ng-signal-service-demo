@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ArithmeticCardComponent } from '../arithmeticCard/arithmetic-card.component';
+import { ArithmeticCardComponent } from './arithmeticCard/arithmetic-card.component';
 
 @Component({
   selector: 'app-arithmetic-cards',

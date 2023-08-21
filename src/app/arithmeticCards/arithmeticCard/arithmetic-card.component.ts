@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { BorderDirective } from '../directives/border.directive';
+import { BorderDirective } from '../../directives/border.directive';
 
 @Component({
   selector: 'app-arithmetic-card',
