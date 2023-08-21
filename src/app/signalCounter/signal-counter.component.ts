@@ -14,7 +14,7 @@ import { SignalService } from './services/signal.service';
       <button (click)="increment()">+</button>
       <button (click)="reset()">Reset</button>
     </div>
-    <app-arithmetic-cards [arithmetic]="arithmetic()" borderColor='blue' [borderWidth]="2"></app-arithmetic-cards>
+    <app-arithmetic-cards [arithmetic]="arithmetic()"></app-arithmetic-cards>
   `,
   styles: [`
     :host {

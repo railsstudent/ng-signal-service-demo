@@ -8,14 +8,10 @@ import { ArithmeticCardComponent } from '../arithmeticCard/arithmetic-card.compo
   imports: [ArithmeticCardComponent, ArithmeticPipe],
   template: `
     <div>
-      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'Square of ':arithmetic.square" 
-        [borderColor]="borderColor" [borderWidth]="borderWidth"></app-arithmetic-card>
-      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'Cube of ':arithmetic.cube" 
-        [borderColor]="borderColor" [borderWidth]="borderWidth"></app-arithmetic-card>
-      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'2 x ':arithmetic.double" 
-        [borderColor]="borderColor" [borderWidth]="borderWidth"></app-arithmetic-card>
-      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'3 x ':arithmetic.triple" 
-        [borderColor]="borderColor" [borderWidth]="borderWidth"></app-arithmetic-card>
+      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'Square of ':arithmetic.square"></app-arithmetic-card>
+      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'Cube of ':arithmetic.cube"></app-arithmetic-card>
+      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'2 x ':arithmetic.double"></app-arithmetic-card>
+      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'3 x ':arithmetic.triple"></app-arithmetic-card>
     </div>
   `,
   styles: [`
@@ -43,10 +39,4 @@ export class ArithmeticCardsComponent {
     double: number,
     triple: number,
   }
-
-  @Input()
-  borderColor = 'red';
-
-  @Input()
-  borderWidth = 1;
 }

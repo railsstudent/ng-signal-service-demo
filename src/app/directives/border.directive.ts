@@ -11,7 +11,7 @@ export class BorderDirective {
 
   @Input()
   @HostBinding('style.borderWidth.px')
-  borderWidth = 1;
+  borderWidth = 2;
 
   @HostBinding('style.borderStyle')
   borderStyle = 'solid';

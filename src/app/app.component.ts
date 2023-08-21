@@ -8,8 +8,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   imports: [RouterOutlet, RouterLink],
   template: `
     <ul>
-      <li><a routerLink="/subject-in-a-service">Subject in a service</a></li>
-      <li><a routerLink="/signal-in-a-service">Signal in a service</a></li>
+      <li><a routerLink="/subject-in-a-service">Subject in a service example</a></li>
+      <li><a routerLink="/signal-in-a-service">Signal in a service example</a></li>
     </ul>
     <router-outlet></router-outlet>
   `,
