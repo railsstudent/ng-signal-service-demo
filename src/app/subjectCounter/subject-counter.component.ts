@@ -15,8 +15,8 @@ import { SubjectService } from './services/subject.service';
       <button (click)="increment()">+</button>
       <button (click)="reset()">Reset</button>
     </div>
-    <ng-container *ngIf="arithmetic$ | async as arithmetic">
-      <app-arithmetic-cards [arithmetic]="arithmetic"></app-arithmetic-cards>
+    <ng-container *ngIf="descriptions$ | async as descriptions">
+      <app-arithmetic-cards [descriptions]="descriptions"></app-arithmetic-cards>
     </ng-container>
   `,
   styles: [`
@@ -55,7 +55,7 @@ import { SubjectService } from './services/subject.service';
 export class SubjectCounterComponent {
   service = inject(SubjectService);
   counter$ = this.service.counter$;
-  arithmetic$ = this.service.arithmetic$;
+  descriptions$ = this.service.descriptions$;
 
   increment() {
     this.service.update();

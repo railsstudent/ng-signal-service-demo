@@ -1,17 +1,16 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ArithmeticPipe } from '../pipes/arithmetic.pipe';
 import { ArithmeticCardComponent } from '../arithmeticCard/arithmetic-card.component';
 
 @Component({
   selector: 'app-arithmetic-cards',
   standalone: true,
-  imports: [ArithmeticCardComponent, ArithmeticPipe],
+  imports: [ArithmeticCardComponent],
   template: `
     <div>
-      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'Square of ':arithmetic.square"></app-arithmetic-card>
-      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'Cube of ':arithmetic.cube"></app-arithmetic-card>
-      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'2 x ':arithmetic.double"></app-arithmetic-card>
-      <app-arithmetic-card [description]="arithmetic.counter | arithmetic:'3 x ':arithmetic.triple"></app-arithmetic-card>
+      <app-arithmetic-card [description]="descriptions.square"></app-arithmetic-card>
+      <app-arithmetic-card [description]="descriptions.cube"></app-arithmetic-card>
+      <app-arithmetic-card [description]="descriptions.double"></app-arithmetic-card>
+      <app-arithmetic-card [description]="descriptions.triple"></app-arithmetic-card>
     </div>
   `,
   styles: [`
@@ -32,11 +31,10 @@ import { ArithmeticCardComponent } from '../arithmeticCard/arithmetic-card.compo
 })
 export class ArithmeticCardsComponent {
   @Input({ required: true }) 
-  arithmetic!: {
-    counter: number,
-    square: number,
-    cube: number,
-    double: number,
-    triple: number,
+  descriptions!: {
+    square: string,
+    cube: string,
+    double: string,
+    triple: string,
   }
 }

@@ -5,14 +5,13 @@ export class SignalService {
   private counterSignal = signal(0);
   counter = this.counterSignal.asReadonly();
 
-  arithmetic = computed(() => {
+  descriptions = computed(() => {
     const counter = this.counter();
     return {
-      counter,
-      square: Math.pow(counter, 2),
-      cube: Math.pow(counter, 3),
-      double: counter * 2,
-      triple: counter * 3,
+      square: `Square of ${counter} = ${Math.pow(counter, 2)}`,
+      cube: `Cube of ${counter} = ${Math.pow(counter, 3)}`,
+      double: `2 x ${counter} = ${counter * 2}`,
+      triple: `3 x ${counter} = ${counter * 3}`,
     }
   });
 

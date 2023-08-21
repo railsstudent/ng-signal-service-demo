@@ -6,14 +6,15 @@ export class SubjectService {
   private counterSub = new BehaviorSubject(0);
   counter$ = this.counterSub.asObservable();
 
-  arithmetic$ = this.counterSub.pipe(
-    map((x) => ({
-      counter: x,
-      square: Math.pow(x, 2),
-      cube: Math.pow(x, 3),
-      double: x * 2,
-      triple: x * 3,
-    }))
+  descriptions$ = this.counterSub.pipe(
+    map((counter) =>  
+      ({
+        square: `Square of ${counter} = ${Math.pow(counter, 2)}`,
+        cube: `Cube of ${counter} = ${Math.pow(counter, 3)}`,
+        double: `2 x ${counter} = ${2 * counter}`,
+        triple: `3 x ${counter} = ${3 * counter}`,
+      })
+    )
   );
 
   update(delta = 1) {

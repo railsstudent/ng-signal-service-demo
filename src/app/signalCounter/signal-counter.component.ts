@@ -14,7 +14,7 @@ import { SignalService } from './services/signal.service';
       <button (click)="increment()">+</button>
       <button (click)="reset()">Reset</button>
     </div>
-    <app-arithmetic-cards [arithmetic]="arithmetic()"></app-arithmetic-cards>
+    <app-arithmetic-cards [descriptions]="descriptions()"></app-arithmetic-cards>
   `,
   styles: [`
     :host {
@@ -52,7 +52,7 @@ import { SignalService } from './services/signal.service';
 export class SignalCounterComponent {
   service = inject(SignalService);
   counter = this.service.counter;
-  arithmetic = this.service.arithmetic;
+  descriptions = this.service.descriptions;
 
   increment() {
     this.service.update();

@@ -32,6 +32,6 @@ import { BorderDirective } from '../directives/border.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArithmeticCardComponent {
-  @Input({required: true})
+  @Input({ required: true })
   description = '';
 }
