@@ -10,9 +10,11 @@ import { SubjectService } from './services/subject.service';
   template: `
     <h3>Simple counter that uses BehaviorSubject</h3>
     <div>
-      <button (click)="decrement()">-</button>
+      <button (click)="decrement(-3)">-3</button>
+      <button (click)="decrement(-1)">-1</button>
       <span>{{ counter$ | async }}</span>
-      <button (click)="increment()">+</button>
+      <button (click)="increment(1)">+1</button>
+      <button (click)="increment(3)">+3</button>
       <button (click)="reset()">Reset</button>
     </div>
     <ng-container *ngIf="descriptions$ | async as descriptions">
@@ -29,11 +31,11 @@ import { SubjectService } from './services/subject.service';
       border-radius: 25%;
       width: 40px;
       height: 40px;
-      font-size: 1.5rem;
+      font-size: 1rem;
+      margin-right: 0.25rem;
     }
 
     button:last-of-type {
-      margin-left: 0.5rem;
       border-radius: 25%;
       width: unset;
       height: 40px;
@@ -57,12 +59,12 @@ export class SubjectCounterComponent {
   counter$ = this.service.counter$;
   descriptions$ = this.service.descriptions$;
 
-  increment() {
-    this.service.update();
+  increment(delta: number) {
+    this.service.update(delta);
   }
 
-  decrement() {
-    this.service.update(-1);
+  decrement(delta: number) {
+    this.service.update(delta);
   }
 
   reset() {

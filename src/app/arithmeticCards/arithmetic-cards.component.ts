@@ -7,10 +7,10 @@ import { ArithmeticCardComponent } from './arithmeticCard/arithmetic-card.compon
   imports: [ArithmeticCardComponent],
   template: `
     <div>
-      <app-arithmetic-card [description]="descriptions.square"></app-arithmetic-card>
-      <app-arithmetic-card [description]="descriptions.cube"></app-arithmetic-card>
-      <app-arithmetic-card [description]="descriptions.double"></app-arithmetic-card>
-      <app-arithmetic-card [description]="descriptions.triple"></app-arithmetic-card>
+      <app-arithmetic-card [description]="descriptions.square" [borderColor]="borderColor"></app-arithmetic-card>
+      <app-arithmetic-card [description]="descriptions.cube" [borderColor]="borderColor"></app-arithmetic-card>
+      <app-arithmetic-card [description]="descriptions.double" [borderColor]="borderColor"></app-arithmetic-card>
+      <app-arithmetic-card [description]="descriptions.triple" [borderColor]="borderColor"></app-arithmetic-card>
     </div>
   `,
   styles: [`
@@ -37,4 +37,7 @@ export class ArithmeticCardsComponent {
     double: string,
     triple: string,
   }
+
+  @Input()
+  borderColor = 'red';
 }

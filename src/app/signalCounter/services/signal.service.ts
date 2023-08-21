@@ -8,17 +8,18 @@ export class SignalService {
   descriptions = computed(() => {
     const counter = this.counter();
     return {
-      square: `Square of ${counter} = ${Math.pow(counter, 2)}`,
-      cube: `Cube of ${counter} = ${Math.pow(counter, 3)}`,
+      square: `Math.pow(${counter}, 2) = ${Math.pow(counter, 2)}`,
+      cube: `Math.pow(${counter}, 3) = ${Math.pow(counter, 3)}`,
       double: `2 x ${counter} = ${counter * 2}`,
       triple: `3 x ${counter} = ${counter * 3}`,
     }
   });
 
   update(delta = 1) {
-    this.counterSignal.update((value) => 
-      (value + delta >= 0) ? value + delta : value
-    );
+    this.counterSignal.update((value) => {
+      const nextValue = value + delta;
+      return (nextValue >= 0) ? nextValue : value;
+    });
   }
 
   reset() {

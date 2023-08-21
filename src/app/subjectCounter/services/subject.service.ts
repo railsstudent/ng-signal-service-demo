@@ -9,8 +9,8 @@ export class SubjectService {
   descriptions$ = this.counterSub.pipe(
     map((counter) =>  
       ({
-        square: `Square of ${counter} = ${Math.pow(counter, 2)}`,
-        cube: `Cube of ${counter} = ${Math.pow(counter, 3)}`,
+        square: `Math.pow(${counter}, 2) = ${Math.pow(counter, 2)}`,
+        cube: `Math.pow(${counter}, 3) = ${Math.pow(counter, 3)}`,
         double: `2 x ${counter} = ${2 * counter}`,
         triple: `3 x ${counter} = ${3 * counter}`,
       })
@@ -18,8 +18,9 @@ export class SubjectService {
   );
 
   update(delta = 1) {
-    if (this.counterSub.getValue() + delta >= 0) {
-      this.counterSub.next(this.counterSub.getValue() + delta);
+    const nextValue = this.counterSub.getValue() + delta;
+    if (nextValue >= 0) {
+      this.counterSub.next(nextValue);
     }
   }
 

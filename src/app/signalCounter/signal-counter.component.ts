@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ArithmeticCardsComponent } from '../arithmeticCards/arithmetic-cards.component';
 import { SignalService } from './services/signal.service';
 
@@ -9,12 +9,14 @@ import { SignalService } from './services/signal.service';
   template: `
     <h3>Simple counter that uses Signal</h3>
     <div>
-      <button (click)="decrement()">-</button>
+      <button (click)="decrement(-3)">-3</button>
+      <button (click)="decrement(-1)">-1</button>
       <span>{{ counter() }}</span>
-      <button (click)="increment()">+</button>
+      <button (click)="increment(1)">+1</button>
+      <button (click)="increment(3)">+3</button>
       <button (click)="reset()">Reset</button>
     </div>
-    <app-arithmetic-cards [descriptions]="descriptions()"></app-arithmetic-cards>
+    <app-arithmetic-cards [descriptions]="descriptions()" borderColor="blue"></app-arithmetic-cards>
   `,
   styles: [`
     :host {
@@ -26,11 +28,11 @@ import { SignalService } from './services/signal.service';
       border-radius: 25%;
       width: 40px;
       height: 40px;
-      font-size: 1.5rem;
+      font-size: 1rem;
+      margin-right: 0.25rem;
     }
 
     button:last-of-type {
-      margin-left: 0.5rem;
       border-radius: 25%;
       width: unset;
       height: 40px;
@@ -54,13 +56,13 @@ export class SignalCounterComponent {
   counter = this.service.counter;
   descriptions = this.service.descriptions;
 
-  increment() {
-    this.service.update();
+  increment(delta: number) {
+    this.service.update(delta);
   }
 
-  decrement() {
-    this.service.update(-1);
-  }
+  decrement(delta: number) {
+    this.service.update(delta);
+  } 
 
   reset() {
     this.service.reset();
