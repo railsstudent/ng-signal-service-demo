@@ -11,12 +11,12 @@ import { SignalService } from './services/signal.service';
     <div>
       <button (click)="decrement(-3)">-3</button>
       <button (click)="decrement(-1)">-1</button>
-      <span>{{ counter() }}</span>
+      <span>{{ counterSignal() }}</span>
       <button (click)="increment(1)">+1</button>
       <button (click)="increment(3)">+3</button>
       <button (click)="reset()">Reset</button>
     </div>
-    <app-arithmetic-cards [descriptions]="descriptions()" borderColor="blue"></app-arithmetic-cards>
+    <app-arithmetic-cards [descriptions]="descriptionsSignal()" borderColor="blue"></app-arithmetic-cards>
   `,
   styles: [`
     :host {
@@ -53,8 +53,8 @@ import { SignalService } from './services/signal.service';
 })
 export class SignalCounterComponent {
   service = inject(SignalService);
-  counter = this.service.counter;
-  descriptions = this.service.descriptions;
+  counterSignal = this.service.counter;
+  descriptionsSignal = this.service.descriptions;
 
   increment(delta: number) {
     this.service.update(delta);

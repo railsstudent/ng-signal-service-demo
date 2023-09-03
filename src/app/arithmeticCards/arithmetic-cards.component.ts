@@ -1,6 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ArithmeticCardComponent } from './arithmeticCard/arithmetic-card.component';
 
+interface ArithmeticDescriptions {
+  square: string;
+  cube: string;
+  double: string;
+  triple: string;
+}
+
 @Component({
   selector: 'app-arithmetic-cards',
   standalone: true,
@@ -31,12 +38,7 @@ import { ArithmeticCardComponent } from './arithmeticCard/arithmetic-card.compon
 })
 export class ArithmeticCardsComponent {
   @Input({ required: true }) 
-  descriptions!: {
-    square: string,
-    cube: string,
-    double: string,
-    triple: string,
-  }
+  descriptions!: ArithmeticDescriptions
 
   @Input()
   borderColor = 'red';
